@@ -1,5 +1,5 @@
 # Confluence
-## paper
+## Paper
 Confluence: Improving Network Monitoring Accuracy on Multi-pipeline Data Plane
 
 ## Purpose

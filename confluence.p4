@@ -495,7 +495,7 @@ control SwitchIngress(
         //1 -> odd, 0 -> even
         bit<1> odd_or_even = update_pkt_cnt_reg.execute(0);
         conMeta.flag = odd_or_even;
-        update_test_cnt.execute(0);
+        //update_test_cnt.execute(0);
         //出口pipe
         bit<2> real_pipe_ = (bit<2>)ig_tm_md.ucast_egress_port;
         bit<32> real_pipe = (bit<32>)real_pipe_;
@@ -510,7 +510,7 @@ control SwitchIngress(
         bit<2> monitor_pipe_ = (bit<2>)conMeta.flowID;
         bit<32> monitor_pipe = (bit<32>)monitor_pipe_;
         conMeta.monitorPipe = monitor_pipe;
-        update_test_monitor.execute(0);
+        //update_test_monitor.execute(0);
         
 
         bit<32> flow_id;
@@ -684,7 +684,7 @@ control SwitchIngress(
                     }
                 }
             }
-            update_test_delta.execute(0);
+            //update_test_delta.execute(0);
             table_forward.apply();
         
         

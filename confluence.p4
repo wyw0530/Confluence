@@ -579,7 +579,7 @@ control SwitchIngress(
                                                                 hdr.tcp.src_port,
                                                                 hdr.ipv4.protocol});
         }
-        @stage(4){}
+        
         
             if(odd_or_even == 0){
                 conMeta.cur_min_delta_1 = 0;
@@ -603,26 +603,20 @@ control SwitchIngress(
                 if(flow_id != 0){
                     //real pipe data out 
                     //delta sketch w = 1024
-                    //avoid collision in same stage
-                    bit<1> stage_pass = 0;
-                    if(stage_pass == 0){
+                    
                         
                         bit<10> delta_index_get1 = (bit<10>)hash_func2.get({flow_id});
                         bit<10> delta_index_get2 = (bit<10>)hash_func3.get({flow_id});
                         min_delta_1 = getDeltaSketch1_1.execute(delta_index_get1);
+                        conMeta.cur_min_delta_1 =min_delta_1;
                         before_value = getDeltaSketch1_2.execute(delta_index_get2);
-                    }
-                    stage_pass = stage_pass + 1;
-                    if(stage_pass == 1){
+
                         //monitor pipe data in
                         
                         
         //                 conMeta.outFlowID = flow_id;
                         conMeta.add_hdr = 1;
-                    }
                     
-                    hdr.custom_metadata.setValid();
-                    hdr.custom_metadata.flowID = flow_id;
                     hdr.custom_metadata.delta = min_delta_1;
                 }
             }
@@ -644,25 +638,16 @@ control SwitchIngress(
                 setDeltaSketch1_2.execute(delta_index_set2);
         //                 conMeta.outFlowID = flow_id;
                 if(flow_id != 0){
-                    bit <1> stage_pass = 0;
                     
-                    if(stage_pass == 0){
                         bit<10> delta_index_get1 = (bit<10>)hash_func2.get({flow_id});
                         bit<10> delta_index_get2 = (bit<10>)hash_func3.get({flow_id});
 
                         min_delta_2 = getDeltaSketch2_1.execute(delta_index_get1);
+                        conMeta.cur_min_delta_2 = min_delta_2;
                         before_value = getDeltaSketch2_2.execute(delta_index_get2);
                         
-                    }
-                    stage_pass = stage_pass + 1;
-                    if (stage_pass == 1){
-                        stage_pass = stage_pass - 1;
-                    }
-                    
-                    if (stage_pass == 0){
-                        
                         conMeta.add_hdr = 1;
-                    }
+                    
                     
                     hdr.custom_metadata.delta = min_delta_2;
                 }

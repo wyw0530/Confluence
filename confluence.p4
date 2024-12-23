@@ -565,16 +565,21 @@ control SwitchIngress(
         }
         bit<1> c_pointer_set = (bit<1>)c_pointer_set_;
         bit<1> c_pointer_get = (bit<1>)c_pointer_get_;
-        bit<10> delta_index_set1 = (bit<10>)hash_func4.get({hdr.ipv4.dst_addr,
-                                                            hdr.ipv4.src_addr,
-                                                            hdr.tcp.dst_port,
-                                                            hdr.tcp.src_port,
-                                                            hdr.ipv4.protocol});
-        bit<10> delta_index_set2 = (bit<10>)hash_func5.get({hdr.ipv4.dst_addr,
-                                                            hdr.ipv4.src_addr,
-                                                            hdr.tcp.dst_port,
-                                                            hdr.tcp.src_port,
-                                                            hdr.ipv4.protocol});
+        bit<10> delta_index_set1;
+        bit<10> delta_index_set2;
+        @stage(3){
+            delta_index_set1 = (bit<10>)hash_func4.get({hdr.ipv4.dst_addr,
+                                                                hdr.ipv4.src_addr,
+                                                                hdr.tcp.dst_port,
+                                                                hdr.tcp.src_port,
+                                                                hdr.ipv4.protocol});
+            delta_index_set2 = (bit<10>)hash_func5.get({hdr.ipv4.dst_addr,
+                                                                hdr.ipv4.src_addr,
+                                                                hdr.tcp.dst_port,
+                                                                hdr.tcp.src_port,
+                                                                hdr.ipv4.protocol});
+        }
+        @stage(4){}
         
             if(odd_or_even == 0){
                 conMeta.cur_min_delta_1 = 0;

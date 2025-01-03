@@ -210,39 +210,39 @@ control SwitchIngress(
                            ) poly1;
     Hash<bit<32>>(HashAlgorithm_t.CUSTOM, poly1) hash_func1;
 
-    CRCPolynomial<bit<32>>(32w0x04C11DB7, // polynomial
-                           true,          // reversed
-                           false,         // use msb?
-                           false,         // extended?
-                           32w0xFFFFFFFF, // initial shift register value
-                           32w0xFFFFFFFF  // result xor
+    CRCPolynomial<bit<32>>(32w0x1EDC6F41,     // polynomial
+                           true,              // reversed
+                           false,             // use msb?
+                           false,             // extended?
+                           32w0xFFFFFFFF,     // initial shift register value
+                           32w0xFFFFFFFF      // result xor
                            ) poly2;
     Hash<bit<32>>(HashAlgorithm_t.CUSTOM, poly2) hash_func2;
 
-    CRCPolynomial<bit<32>>(32w0x04C11DB7, // polynomial
-                           true,          // reversed
-                           false,         // use msb?
-                           false,         // extended?
-                           32w0xFFFFFFFF, // initial shift register value
-                           32w0xFFFFFFFF  // result xor
+    CRCPolynomial<bit<32>>(32w0x741B8CD7,     // Koopman polynomial
+                           true,              // reversed
+                           false,             // use msb?
+                           false,             // extended?
+                           32w0xFFFFFFFF,     // initial shift register value
+                           32w0xFFFFFFFF      // result xor
                            ) poly3;
     Hash<bit<32>>(HashAlgorithm_t.CUSTOM, poly3) hash_func3;
 
-     CRCPolynomial<bit<32>>(32w0x04C11DB7, // polynomial
-                           true,          // reversed
-                           false,         // use msb?
-                           false,         // extended?
-                           32w0xFFFFFFFF, // initial shift register value
-                           32w0xFFFFFFFF  // result xor
+    CRCPolynomial<bit<32>>(32w0x814141AB,     // polynomial
+                           true,              // reversed
+                           false,             // use msb?
+                           false,             // extended?
+                           32w0x00000000,     // initial shift register value
+                           32w0x00000000      // result xor
                            ) poly4;
     Hash<bit<32>>(HashAlgorithm_t.CUSTOM, poly4) hash_func4;
 
-     CRCPolynomial<bit<32>>(32w0x04C11DB7, // polynomial
-                           true,          // reversed
-                           false,         // use msb?
-                           false,         // extended?
-                           32w0xFFFFFFFF, // initial shift register value
-                           32w0xFFFFFFFF  // result xor
+    CRCPolynomial<bit<32>>(32w0xA833982B,     // polynomial
+                           true,              // reversed
+                           false,             // use msb?
+                           false,             // extended?
+                           32w0xFFFFFFFF,     // initial shift register value
+                           32w0xFFFFFFFF      // result xor
                            ) poly5;
     Hash<bit<32>>(HashAlgorithm_t.CUSTOM, poly5) hash_func5;
 
